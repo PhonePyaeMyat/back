@@ -1,10 +1,6 @@
 {
-  "name": "after-school-activities",
+  "name": "back",
   "version": "1.0.0",
-  "workspaces": [
-    "back",
-    "front"
-  ],
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,11 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.1",
-    "mongoose": "^8.8.2",
-    "uuid": "^11.0.3"
-  },
   "description": ""
 }

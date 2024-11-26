@@ -6,28 +6,33 @@ const path = require('path');
 
 const app = express();
 
+// Middleware setup
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'front')));
+app.use(express.static(path.join(__dirname, 'front', 'index.html')));
 
 const mongoURI = "mongodb+srv://PhonePyaeMyat:Phone123@phonepyaemyat.l2wgl.mongodb.net/school_activities";
+const dbName = "school_activities";
 let db;
 
 // Connect to MongoDB
-MongoClient.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(client => {
+async function connectDB() {
+    try {
+        const client = new MongoClient(mongoURI); // No need for deprecated options
+        await client.connect();
         console.log('Successfully connected to MongoDB Atlas');
-        db = client.db('school_activities'); // Use the database name
-    })
-    .catch(err => {
+        db = client.db(dbName); // Select the database
+    } catch (err) {
         console.error('MongoDB connection error:', err);
         process.exit(1); // Exit if connection fails
-    });
+    }
+}
+
+connectDB(); // Initiate connection
 
 // Endpoint to fetch lessons
 app.get('/lessons', async (req, res) => {
