@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 
-// Middleware setup
+// Middleware 
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
