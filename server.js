@@ -12,6 +12,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'front', 'index.html')));
 
@@ -22,7 +23,7 @@ let db;
 // Connect to MongoDB
 async function connectDB() {
     try {
-        const client = new MongoClient(mongoURI); // No need for deprecated options
+        const client = new MongoClient(mongoURI); 
         await client.connect();
         console.log('Successfully connected to MongoDB Atlas');
         db = client.db(dbName); // Select the database
