@@ -33,7 +33,7 @@ async function connectDB() {
     }
 }
 
-connectDB(); // Initiate connection
+connectDB(); 
 
 // Endpoint to fetch lessons
 app.get('/lessons', async (req, res) => {
