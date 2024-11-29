@@ -26,7 +26,7 @@ async function connectDB() {
         const client = new MongoClient(mongoURI); 
         await client.connect();
         console.log('Successfully connected to MongoDB Atlas');
-        db = client.db(dbName); // Select the database
+        db = client.db(dbName); 
     } catch (err) {
         console.error('MongoDB connection error:', err);
         process.exit(1); // Exit if connection fails
