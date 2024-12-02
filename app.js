@@ -94,6 +94,49 @@ app.get('/orders', async (req, res) => {
     }
 });
 
+app.put('/lessons/:id', async (req, res) => {
+    const lessonId = req.params.id;
+    const updatedLesson = req.body;
+
+    try {
+        const result = await db.collection('lessons').updateOne(
+            { _id: new ObjectId(lessonId) },
+            { $set: updatedLesson }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ message: 'Lesson not found' });
+        }
+
+        res.json({ message: 'Lesson updated successfully' });
+    } catch (error) {
+        console.error('Error updating lesson:', error);
+        res.status(400).json({ message: 'Error updating lesson' });
+    }
+});
+
+app.put('/orders/:orderId', async (req, res) => {
+    const orderId = req.params.orderId;
+    const updatedOrder = req.body;
+
+    try {
+        const result = await db.collection('orders').updateOne(
+            { orderId: orderId },
+            { $set: updatedOrder }
+        );
+
+        if (result.matchedCount === 0) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        res.json({ message: 'Order updated successfully' });
+    } catch (error) {
+        console.error('Error updating order:', error);
+        res.status(400).json({ message: 'Error updating order' });
+    }
+});
+
+
 
 app.use((req, res) => {
     res.status(404).send('Page not found');
