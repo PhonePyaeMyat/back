@@ -35,7 +35,7 @@ async function connectDB() {
 
 connectDB(); 
 
-// Endpoint to fetch lessons
+// Endpoint to fetch lesson
 app.get('/lessons', async (req, res) => {
     try {
         console.log('Received request for lessons');
